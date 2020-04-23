@@ -1,0 +1,21 @@
+Создать в GCP 2 ВМ mon и web.
+
+gcloud compute instances create web \
+--zone=europe-west1-d \
+--boot-disk-size=20GB \
+--image=centos-7-v20200403
+--image-project=centos-cloud \
+--machine-type=f1-micro \
+--tags=http-server,https-server \
+--restart-on-failure \
+--metadata-from-file startup-script="C:\linux\16. Monitoring\install_web.sh"
+
+gcloud compute instances create mon \
+--zone=europe-west1-d \
+--boot-disk-size=20GB \
+--image=centos-7-v20200403 \
+--image-project=centos-cloud \
+--machine-type=f1-micro \
+--tags=rsyslog-server \
+--restart-on-failure \
+--metadata-from-file startup-script="C:\linux\16. Monitoring\install_mon.sh"
